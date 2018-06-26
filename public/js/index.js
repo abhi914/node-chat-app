@@ -4,11 +4,7 @@ let socket = io();
 
     console.log('Connected to server');
 
-    socket.emit('createMessage', {
-        to: 'abhigyan.nayak@gmail.com',
-        text:'Hey abhigyan, how are you?'
-    });
-
+    
 });
 
 
