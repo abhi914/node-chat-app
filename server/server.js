@@ -19,6 +19,16 @@ app.use(express.static(path.join(__dirname,'../public')));
 io.on('connection',(socket) => {
     console.log('New User Connected');
 
+    socket.emit('newMessage',{
+        from: "andrew",
+        text:"how are you",
+        createAt: 123
+    });
+
+    socket.on('createMessage', (message) => {
+        console.log(`${JSON.stringify(message,undefined,2)}`);
+    });
+
 
     socket.on('disconnect', () => {
         console.log(`User disconnect`);
