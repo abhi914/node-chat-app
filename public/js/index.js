@@ -22,10 +22,11 @@ socket.on('disconnect',function()  {
 
 socket.on('newMessage', function(message) {
 
+
     let formattedTime = moment(message.createdAt).format('h: mm a');
 
     console.log(`New Message ${JSON.stringify(message ,undefined,12)}`);
-    let li = jQuery('<li></li>');
+    let li = jQuery('<li class="message"></li>');
     li.text(`${message.from} ${formattedTime}: ${message.text}`)
 
     jQuery('#message').append(li);

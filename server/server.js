@@ -33,9 +33,6 @@ io.on('connection',(socket) => {
 
         callback();
 
-
-
-
         io.emit('newMessage',generateMessage(message.from,message.text)); 
 
         // socket.broadcast.emit('newMessage',generateMessage(message.from,message.text) );
