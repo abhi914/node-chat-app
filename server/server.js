@@ -21,10 +21,10 @@ app.use(express.static(path.join(__dirname,'../public')));
 io.on('connection',(socket) => {
     console.log('New User Connected');
 
-    socket.emit('newMessage',generateMessage('admin','welcome to the chat app'));
+    socket.emit('newMessage',generateMessage('Admin','welcome to the chat app'));
         
 
-    socket.broadcast.emit('newMessage', generateMessage('admin','New User Joined'));
+    socket.broadcast.emit('newMessage', generateMessage('Admin','New User Joined'));
 
 
 
@@ -42,7 +42,7 @@ io.on('connection',(socket) => {
     });
 
     socket.on('createLocationMessage', (coords) => {
-        io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude,coords.longitude));
+        io.emit('newLocationMessage',generateLocationMessage('User',coords.latitude,coords.longitude));
     });
 
 
