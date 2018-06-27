@@ -5,12 +5,12 @@ const socketIO = require('socket.io');
 
 const {generateMessage,generateLocationMessage} = require('./utils/message');
 
-const port = process.env.PORT || 3000;
 
+const port = process.env.PORT || 3000;
 const app = express();
 
-let server = http.createServer(app);
 
+let server = http.createServer(app);
 let io = socketIO(server);
 
 
@@ -31,12 +31,12 @@ io.on('connection',(socket) => {
     socket.on('createMessage', (message,callback) => {
         console.log(`${JSON.stringify(message,undefined,2)}`);
 
-        callback('This is from the server');
+        callback();
 
 
 
 
-        // io.emit('newMessage',generateMessage(message.from,message.text)); 
+        io.emit('newMessage',generateMessage(message.from,message.text)); 
 
         // socket.broadcast.emit('newMessage',generateMessage(message.from,message.text) );
     });
