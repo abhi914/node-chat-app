@@ -28,11 +28,17 @@ io.on('connection',(socket) => {
 
 
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message,callback) => {
         console.log(`${JSON.stringify(message,undefined,2)}`);
+
+        callback('This is from the server');
+
+
+
+
         // io.emit('newMessage',generateMessage(message.from,message.text)); 
 
-        // socket.broadcast.emit('newMessage',generateMessage(message.from,message.text) );
+        socket.broadcast.emit('newMessage',generateMessage(message.from,message.text) );
     });
 
 
