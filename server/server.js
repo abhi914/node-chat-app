@@ -4,6 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 
 const {generateMessage,generateLocationMessage} = require('./utils/message');
+const {isRealString} = require('./utils/validation');
 
 
 const port = process.env.PORT || 3000;
@@ -27,6 +28,15 @@ io.on('connection',(socket) => {
     socket.broadcast.emit('newMessage', generateMessage('Admin','New User Joined'));
 
 
+    socket.on('join',(param,callback) => {
+        if(!isRealString(param.name) || !isRealString(param.room)) {
+            callback('Name and room name are required');
+        }
+
+
+        callback();
+
+    });
 
     socket.on('createMessage', (message,callback) => {
         console.log(`${JSON.stringify(message,undefined,2)}`);
