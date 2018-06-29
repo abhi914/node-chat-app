@@ -40,11 +40,7 @@ function scrollToBottom() {
 
 
 
-socket.on('disconnect',function()  {
 
-    console.log('Disconnected from server');
-
-});
 
 
 
@@ -120,4 +116,26 @@ locationButton.on('click',function() {
         locationButton.removeAttr('disabled').text('Send Location');
         
     });
+});
+
+
+
+socket.on('disconnect',function()  {
+
+    console.log('Disconnected from server');
+
+});
+
+
+
+socket.on('updateUserList', function(user) {
+    console.log(`user list ${user}`);
+
+    var ol = jQuery('<ol></ol>');
+
+    user.forEach(function(user) {
+        ol.append(jQuery('<li></li>').text(user));
+    });
+
+    jQuery('#users').html(ol);
 });
